@@ -117,7 +117,7 @@ module DryValidationParser
       elsif PREDICATE_TO_TYPE[name]
         keys[key][:type] = PREDICATE_TO_TYPE[name]
       else
-        description = predicate_description(name.to_s, rest[0][1].to_s)
+        description = predicate_description(name, rest[0][1].to_s)
         if keys[key][:description].to_s.empty?
           keys[key][:description] = description unless description.to_s.empty?
         else

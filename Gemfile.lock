@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dry_validation_parser (0.1.4)
+    dry_validation_parser (0.1.5)
       dry-types (~> 1)
       dry-validation (~> 1)
 
