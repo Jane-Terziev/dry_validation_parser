@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DryValidationParser
   module Config
     module Configuration
@@ -24,7 +26,6 @@ module DryValidationParser
           define_method name, &block
         end
       end
-
     end
   end
 end

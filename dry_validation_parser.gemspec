@@ -8,9 +8,10 @@ Gem::Specification.new do |spec|
   spec.authors = ["Jane-Terziev"]
   spec.email = ["janeterziev@gmail.com"]
 
-  spec.summary = %q{Generate a readable hash from a dry-validation contract schema}
-  spec.description = %q{A parser which converts dry-validation contract schema into a readable hash for further manipulation}
-  spec.homepage      = "https://github.com/Jane-Terziev/dry_validation_parser"
+  spec.summary = "Generate a readable hash from a dry-validation contract schema"
+  spec.description = "A parser which converts dry-validation contract schema into a readable hash for further
+manipulation"
+  spec.homepage = "https://github.com/Jane-Terziev/dry_validation_parser"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
@@ -32,7 +33,6 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "dry-validation", "~> 1"
   spec.add_dependency "dry-types", "~> 1"
+  spec.add_dependency "dry-validation", "~> 1"
 end
-

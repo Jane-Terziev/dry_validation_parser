@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DryValidationParser
   module Config
     module ValidationConfiguration

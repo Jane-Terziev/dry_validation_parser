@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 module DryValidationParser
   class ValidationSchemaParser
     PREDICATE_TO_TYPE = {
-      array?: 'array',
-      bool?: 'boolean',
-      date?: 'date',
-      date_time?: 'datetime',
-      decimal?: 'float',
-      float?: 'float',
-      hash?: 'hash',
-      int?: 'integer',
-      nil?: 'nil',
-      str?: 'string',
-      time?: 'time'
+      array?: "array",
+      bool?: "boolean",
+      date?: "date",
+      date_time?: "datetime",
+      decimal?: "float",
+      float?: "float",
+      hash?: "hash",
+      int?: "integer",
+      nil?: "nil",
+      str?: "string",
+      time?: "time"
     }.freeze
 
     # @api private
@@ -50,8 +52,8 @@ module DryValidationParser
 
       return unless key
 
-      target_info = opts[:member] ? target.to_h : target.to_h
-      type = keys[key][:array] ? 'array' : 'hash'
+      target_info = target.to_h
+      type = keys[key][:array] ? "array" : "hash"
 
       keys.update(key => { **keys[key], type: type, **target_info })
     end
@@ -95,31 +97,17 @@ module DryValidationParser
     # @api private
     def visit_predicate(node, opts = {})
       name, rest = node
-
       key = opts[:key]
-
       if name.equal?(:key?)
         keys[rest[0][1]] = { required: opts.fetch(:required, true) }
       elsif name.equal?(:array?)
         keys[key][:array] = true
       elsif name.equal?(:included_in?)
-        enums = rest[0][1]
-        enums += [nil] if opts.fetch(@config.nullable_type, false)
-        keys[key][:enum] = enums
+        keys[key][:enum] = rest[0][1]
+        keys[key][:enum] += [nil] if opts.fetch(@config.nullable_type, false)
       elsif PREDICATE_TO_TYPE[name]
         keys[key][:type] = PREDICATE_TO_TYPE[name]
-      else
-        description = predicate_description(name.to_s, rest[0][1].to_s)
-        if keys[key][:description].to_s.empty?
-          keys[key][:description] = description unless description.to_s.empty?
-        else
-          keys[key][:description] += ", #{description}" unless description.to_s.empty?
-        end
       end
-    end
-
-    def predicate_description(name, value)
-      ''
     end
   end
 end
