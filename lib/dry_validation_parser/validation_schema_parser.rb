@@ -106,7 +106,18 @@ module DryValidationParser
         keys[key][:enum] += [nil] if opts.fetch(:nullable, false)
       elsif PREDICATE_TO_TYPE[name]
         keys[key][:type] = PREDICATE_TO_TYPE[name]
+      else
+        description = predicate_description(name.to_s, rest[0][1].to_s)
+        if keys[key][:description].to_s.empty?
+          keys[key][:description] = description unless description.to_s.empty?
+        else
+          keys[key][:description] += ", #{description}" unless description.to_s.empty?
+        end
       end
+    end
+
+    def predicate_description(name, value)
+      "#{name}: #{value}"
     end
   end
 end
