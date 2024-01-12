@@ -83,9 +83,6 @@ for each field inside the nested hash.
 If the field is an array of primitive type, the type field will equal to the primitive type, and a
 array flag will be set on the field.
 
-## Custom Configuration For Your Project
-You can override default configurations by changing the values in the `config/initializers/dry_validation_parser.rb` file generated from the rake command in the Installation section.
-
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
