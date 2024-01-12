@@ -91,6 +91,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  dry-types (~> 1)
   dry-validation (~> 1)
   dry_validation_parser!
   i18n

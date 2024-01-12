@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require "dry_validation_parser"
+require "dry-validation"
+require "dry_validation_parser/types"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
