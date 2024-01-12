@@ -4,7 +4,7 @@ require_relative "lib/dry_validation_parser/version"
 
 Gem::Specification.new do |spec|
   spec.name = "dry_validation_parser"
-  spec.version = Dry::Validation::Parser::VERSION
+  spec.version = DryValidationParser::VERSION
   spec.authors = ["Jane-Terziev"]
   spec.email = ["janeterziev@gmail.com"]
 
