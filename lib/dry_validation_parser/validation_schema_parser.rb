@@ -16,6 +16,16 @@ module DryValidationParser
       time?: "time"
     }.freeze
 
+    DESCRIPTION_MAPPING = {
+      eql?: "Must be equal to %{value}",
+      max_size?: "Maximum size: %{value}",
+      min_size?: "Minimum size: %{value}",
+      gteq?: "Greater than or equal to %{value}",
+      gt?: "Greater than %{value}",
+      lt?: "Lower than %{value}",
+      lteq?: "Lower than or equal to %{value}",
+    }.freeze
+
     # @api private
     attr_reader :keys
 
@@ -117,7 +127,12 @@ module DryValidationParser
     end
 
     def predicate_description(name, value)
-      "#{name}: #{value}"
+      if ::I18n.locale_available?(::I18n.locale)
+        ::I18n.t("contract.descriptions.#{name}", value: value, default: '')
+      else
+        description = DESCRIPTION_MAPPING[name]
+        description ? description % { value: 5 } : ""
+      end
     end
   end
 end
