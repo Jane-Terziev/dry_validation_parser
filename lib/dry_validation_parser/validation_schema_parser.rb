@@ -131,7 +131,7 @@ module DryValidationParser
         ::I18n.t("contract.descriptions.#{name}", value: value, default: '')
       else
         description = DESCRIPTION_MAPPING[name]
-        description ? description % { value: 5 } : ""
+        description ? description % { value: value } : ""
       end
     end
   end
