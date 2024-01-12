@@ -15,12 +15,6 @@ And then execute:
 
     bundle install
 
-After installing, execute the following command:
-
-    rake dry_validation_parser:install
-
-This will generate configuration files in your project under `project/config/initializers`. See Configuration section for more details.
-
 ## Usage
 
 #### Parsing a Dry::Validation::Contract
@@ -70,7 +64,7 @@ Lets say we have the following Dry::Validation::Contract definition:
             :keys => {
                 :some_nested_attribute => {
                     :required => false, 
-                    :"x-nullable"=>true, 
+                    :nullable =>true, 
                     :type=>"string"
                 }
             }
@@ -82,8 +76,6 @@ schema and generates a hash. The hash is saved in the `keys` attribute of the pa
 
 The required key in our result will be set to `true` if the field is defined as
 `required(:field_name)`, and `false` if defined as `optional(:field_name)`.
-
-The "x-nullable" key depends on whether we have defined the field as value, maybe or filled.
 
 For nested objects like array of objects or hash, we add a keys field with a definition
 for each field inside the nested hash.

@@ -22,7 +22,6 @@ module DryValidationParser
     # @api private
     def initialize
       @keys = {}
-      @config = Config::ValidationConfiguration
     end
 
     # @api private
@@ -70,7 +69,7 @@ module DryValidationParser
     def visit_or(_, _); end
 
     def visit_not(_node, opts = {})
-      keys[opts[:key]][@config.nullable_type] = true
+      keys[opts[:key]][:nullable] = true
     end
 
     # @api private
@@ -104,7 +103,7 @@ module DryValidationParser
         keys[key][:array] = true
       elsif name.equal?(:included_in?)
         keys[key][:enum] = rest[0][1]
-        keys[key][:enum] += [nil] if opts.fetch(@config.nullable_type, false)
+        keys[key][:enum] += [nil] if opts.fetch(:nullable, false)
       elsif PREDICATE_TO_TYPE[name]
         keys[key][:type] = PREDICATE_TO_TYPE[name]
       end
