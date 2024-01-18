@@ -14,5 +14,3 @@ gem "rubocop", "~> 1.21"
 gem "dry-types", "~> 1"
 
 gem "dry-validation", "~> 1"
-
-gem "i18n"

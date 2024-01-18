@@ -127,12 +127,8 @@ module DryValidationParser
     end
 
     def predicate_description(name, value)
-      if ::I18n.locale_available?(::I18n.locale)
-        ::I18n.t("contract.descriptions.#{name}", value: value, default: '')
-      else
-        description = DESCRIPTION_MAPPING[name]
-        description ? description % { value: value } : ""
-      end
+      description = DESCRIPTION_MAPPING[name]
+      description ? description % { value: value } : ""
     end
   end
 end
