@@ -17,13 +17,13 @@ module DryValidationParser
     }.freeze
 
     DESCRIPTION_MAPPING = {
-      eql?: "Must be equal to %{value}",
-      max_size?: "Maximum size: %{value}",
-      min_size?: "Minimum size: %{value}",
-      gteq?: "Greater than or equal to %{value}",
-      gt?: "Greater than %{value}",
-      lt?: "Lower than %{value}",
-      lteq?: "Lower than or equal to %{value}",
+      eql?: "Must be equal to %<value>s",
+      max_size?: "Maximum size: %<value>s",
+      min_size?: "Minimum size: %<value>s",
+      gteq?: "Greater than or equal to %<value>s",
+      gt?: "Greater than %<value>s",
+      lt?: "Lower than %<value>s",
+      lteq?: "Lower than or equal to %<value>s"
     }.freeze
 
     # @api private
@@ -128,7 +128,7 @@ module DryValidationParser
 
     def predicate_description(name, value)
       description = DESCRIPTION_MAPPING[name]
-      description ? description % { value: value } : ""
+      description ? format(description, value: value) : ""
     end
   end
 end
