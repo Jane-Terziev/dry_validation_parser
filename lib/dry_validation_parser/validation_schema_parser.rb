@@ -7,7 +7,7 @@ module DryValidationParser
       bool?: "boolean",
       date?: "date",
       date_time?: "datetime",
-      decimal?: "float",
+      decimal?: "decimal",
       float?: "float",
       hash?: "hash",
       int?: "integer",
