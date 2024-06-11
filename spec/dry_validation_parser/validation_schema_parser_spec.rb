@@ -52,6 +52,11 @@ RSpec.describe DryValidationParser::ValidationSchemaParser do
       int?
       str?
       bool?
+      uuid_v1?
+      uuid_v2?
+      uuid_v3?
+      uuid_v4?
+      uuid_v5?
     ]
   }
 
@@ -282,6 +287,7 @@ RSpec.describe DryValidationParser::ValidationSchemaParser do
           expect { subject.visit(contract.schema.to_ast) }.to_not raise_error
         end
       end
+
       context "required(:field).filled(:#{array_of_types})" do
         it "should parse all fields correctly without raising error" do
           contract = Class.new(Dry::Validation::Contract) do

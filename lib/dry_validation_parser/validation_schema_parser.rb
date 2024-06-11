@@ -13,7 +13,12 @@ module DryValidationParser
       int?: "integer",
       nil?: "nil",
       str?: "string",
-      time?: "time"
+      time?: "time",
+      uuid_v1?: "uuid",
+      uuid_v2?: "uuid",
+      uuid_v3?: "uuid",
+      uuid_v4?: "uuid",
+      uuid_v5?: "uuid"
     }.freeze
 
     DESCRIPTION_MAPPING = {
