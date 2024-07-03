@@ -61,7 +61,7 @@ RSpec.describe DryValidationParser::ValidationSchemaParser do
   }
 
   let(:contract) do
-    Class.new(ApplicationContract)
+    Class.new(Dry::Validation::Contract)
   end
 
   subject { described_class.new }
@@ -477,6 +477,41 @@ RSpec.describe DryValidationParser::ValidationSchemaParser do
               end
             end
           end
+          expect { subject.visit(contract.schema.to_ast) }.to_not raise_error
+        end
+      end
+    end
+
+    context 'when the contract contains a namespace configuration' do
+      context 'params' do
+        let(:contract) do
+          Class.new(Dry::Validation::Contract) do
+            config.messages.namespace = 'app.namespace'
+
+            params do
+              required(:string).value(:string)
+            end
+          end
+        end
+
+        it 'should parse all fields correctly without raising an error' do
+          expect { subject.visit(contract.schema.to_ast) }.to_not raise_error
+          expect(subject.keys[:string]).to_not be_nil
+        end
+      end
+
+      context 'json' do
+        let(:contract) do
+          Class.new(Dry::Validation::Contract) do
+            config.messages.namespace = 'app.namespace'
+
+            params do
+              required(:string).value(:string)
+            end
+          end
+        end
+
+        it 'should parse all fields correctly without raising an error' do
           expect { subject.visit(contract.schema.to_ast) }.to_not raise_error
         end
       end

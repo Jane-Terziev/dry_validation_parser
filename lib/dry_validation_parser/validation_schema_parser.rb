@@ -58,6 +58,10 @@ module DryValidationParser
       public_send(:"visit_#{meth}", rest, opts)
     end
 
+    def visit_namespace(node, opts = {})
+      visit(node[1], opts)
+    end
+
     # @api private
     def visit_set(node, opts = {})
       target = (key = opts[:key]) ? self.class.new : self
